@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% extends "bootstrap/base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block navbar %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+<div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav" style="font-family:verdana;padding:17px 10px">
+
+            <li class="nav-item" style="margin-left:146px;color:#F5FFFA;font-size:24px">
+                <a class="navbar-link" href="/" style="color:#F5FFFA"><strong>Tushar Ray</strong></a>
+            </li>
+
+{#            <li>#}
+<!--                put: class="active" to have a highlight on the selected area-->
+{#                <a href="/" style="color:#F5FFFA;font-size:24px;margin-left:625px"><strong>Home</strong></a>#}
+{#            </li>#}
+
+
+            <li>
+                <a href="/about" style="color:white;font-size:24px;margin-left:60px"><strong>About</strong></a>
+            </li>
+
+            <li class="dropdown" style="margin-left:80px">
+
+                <button type="button" class="btn btn-link dropdown-toggle" style="margin-top:1px;font-size:24px;color:white" data-toggle="dropdown">
+                    <strong> Programs </strong> <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li class="dropdown-header" style="font-size:17px"> <strong>Students </strong> </li>
+                        <li>  <a href="/students/createstudents" style="font-size:15px">  Create a student  </a>  </li>
+                        <li>  <a href="/students/studenttable" style="font-size:15px">  Student table  </a>  </li>
+                    <li class="dropdown-header" style="font-size:17px"> <strong> Databases </strong> </li>
+                        <li>  <a href="/databases/footballmatches"> Football matches</a> </li>
+                </ul>
+
+            </li>
+
+        </ul>
+
+        <button class="btn btn-primary navbar-btn navbar-right"
+                style="font-size:20px;margin-top:20px;margin-right:50px">
+            <strong>Register</strong>
+        </button>
+
+        <button class="btn btn-success navbar-btn navbar-right"
+                style="color:white;font-size:20px;margin-top:20px;margin-right:63px;
+                padding-left:12px;padding-right:12px;">
+            Log in
+        </button>
+
+    </div>
+</nav>
+</div>
+
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

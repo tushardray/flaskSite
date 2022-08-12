@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update a student</title>
+</head>
+<body>
+{% block content %}
+
+<div class="container col-lg-offset-1">
+
+    <div class="row">
+
+        <div>
+
+            <form action="/students/updatestudentredirect" method="POST">
+
+
+                <label style="font-size:400%;color:#2C3539;margin-top:140px;margin-bottom:30px;font-family:verdana">Please provide the new student information:</label>
+
+                <br>
+                <br>
+
+                <div class="form-group">
+                    <label style="font-size:300%;color:#808000">First name: </label>
+                    <input class="form-control" name="firstname" value="{{ htmlstudentinfo.getFirstName() }}" style="font-size:150%">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label style="font-size:300%;color:#808000">Last name: </label>
+                    <input class="form-control" name="lastname" value="{{ htmlstudentinfo.getLastName() }}" style="font-size:150%">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label style="font-size:300%;color:#808000">Gender: </label>
+                    <br>
+                    <select name="gender"  style="font-size:150%" required>
+                        <option value=""></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label style="font-size:300%;color:#808000">Address: </label>
+                    <input class="form-control" name="address" value="{{ htmlstudentinfo.getAddress() }}" style="font-size:150%">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label style="font-size:300%;color:#808000">Field of study: </label>
+                    <input class="form-control" name="major" value="{{ htmlstudentinfo.getMajor() }}" style="font-size:150%">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label style="font-size:300%;color:#808000">Student ID: </label>
+                    <input class="form-control" name="id" value="{{ htmlstudentinfo.getID() }}" style="font-size:150%" readonly>
+                </div>
+
+                <br>
+                <br>
+
+                <button type="submit" style="font-size:150%" class="btn btn-success">Submit</button>
+
+                <form action="/students/studenttable">
+                    <button style="font-size:150%;margin-left:50px" class="btn btn-warning">Cancel</button>
+                </form>
+
+
+
+                <input type="hidden" name="oldFirstname" value="{{ htmlstudentinfo.getFirstName() }}" style="font-size:150%">
+                <br>
+                <br>
+
+
+                <input type="hidden" name="oldLastname" value="{{ htmlstudentinfo.getLastName() }}" style="font-size:150%">
+                <br>
+                <br>
+
+
+                <input type="hidden" name="oldGender"  style="font-size:150%" value="{{ htmlstudentinfo.getGender() }}">
+                <br>
+                <br>
+
+
+                <input type="hidden" name="oldAddress" value="{{ htmlstudentinfo.getAddress() }}" style="font-size:150%">
+                <br>
+                <br>
+
+
+                <input type="hidden" name="oldMajor" value="{{ htmlstudentinfo.getMajor() }}" style="font-size:150%">
+                <br>
+                <br>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+</body>
+</html>

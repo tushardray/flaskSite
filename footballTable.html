@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Matches</title>
+
+<style>
+    .td {
+        border-width: 1px;
+        border-color: #0f0f0f;
+        border-style: solid;
+    }
+</style>
+</head>
+
+<body>
+{% block content %}
+
+<div class="container-fluid" style="margin-bottom: 500px">
+
+    <div class="row">
+
+        <div class="col-lg-4" style="margin-top:150px">
+
+        <br>
+        <br>
+
+            <h1 style="text-align: center;font-family:verdana">
+                <strong>Every football match from<br>
+                    November 1872 to June 2022</strong>
+            </h1>
+
+        <br>
+        <br>
+
+            <p style="text-align: center;font-size: 20px">
+                <strong>Total matches shown: {{ datalist|length }}</strong>
+                <br>
+                <strong>Total matches available: {{ totalTableLength }}</strong>
+            </p>
+
+        <br>
+        <br>
+        <br>
+
+        </div>
+
+        <div class="col-lg-8 col-md-6" style="height: 500px;width: 60%;overflow:auto;float: right;
+        margin-right: 50px;margin-top:180px;background-color: #F3F3F3;font-size: 100%">
+
+            <table class="table table-responsive tableScroll">
+                <thead>
+                    <tr>
+                        <th>Match ID</th>
+                        <th>Date</th>
+                        <th>Home Team</th>
+                        <th>Away Team</th>
+                        <th>Home Score</th>
+                        <th>Away Score</th>
+                        <th>Tournament</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>Neutrality (T/F)</th>
+                        <th>Edit match</th>
+                        <th>Delete match</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for record in datalist%}
+                    <tr>
+                        <td class="td">{{ record.getID() }}</td>
+                        <td>{{ record.getDate() }}</td>
+                        <td>{{ record.getHomeTeam() }}</td>
+                        <td>{{ record.getAwayTeam() }}</td>
+                        <td>{{ record.getHomeScore() }}</td>
+                        <td>{{ record.getAwayScore() }}</td>
+                        <td>{{ record.getTournament() }}</td>
+                        <td>{{ record.getCity() }}</td>
+                        <td>{{ record.getCountry() }}</td>
+                        <td>{{ record.getNeutral() }}</td>
+
+                        <td><a href="/databases/footballmatchesedit?id={{record.getID()}}&date={{record.getDate()}}&homeTeam={{record.getHomeTeam()}}&
+    awayTeam={{record.getAwayTeam()}}&homeScore={{record.getHomeScore()}}&awayScore={{record.getAwayScore()}}&tournament={{record.getTournament()}}&
+    city={{record.getCity()}}&country={{record.getCountry()}}&neutrality={{record.getNeutral()}}">Edit</a></td>
+
+                        <td><a href="/databases/footballmatchesdelete?id={{record.getID()}}&date={{record.getDate()}}&homeTeam={{record.getHomeTeam()}}&
+    awayTeam={{record.getAwayTeam()}}&homeScore={{record.getHomeScore()}}&awayScore={{record.getAwayScore()}}&tournament={{record.getTournament()}}&
+    city={{record.getCity()}}&country={{record.getCountry()}}&neutrality={{record.getNeutral()}}">Delete</a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+
+            <div style="text-align: left;margin-left:40px">
+                <form action="/databases/expandedfootballtable" method="POST">
+
+                    <div class="form-group">
+
+                        <label style="font-size:30px">
+                            Show more matches:
+                        </label>
+
+
+                    <br>
+
+                        <input id="showAllVals" type="radio" name="showVals" value="showAll">
+                        <label style="font-size: 20px" for="showAllVals">Show all</label>
+
+                    <br>
+
+                        <input id="showHalfVals" type="radio" name="showVals" value="showHalf">
+                        <label style="font-size: 20px" for="showHalfVals">Show half</label>
+
+                    <br>
+                    <br>
+
+                        <button class="btn btn-link" type="submit" style="font-size: 20px">
+                            Go &rarr;
+                        </button>
+                    <br>
+                    <br>
+                        <label style="font-size:15px;color: #9C1A1C">
+                            Warning: A high number of rows requested could cause lag
+                        </label>
+
+                    <br>
+                    <br>
+                    <br>
+
+                        <h2>OR</h2>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div>
+                <form action="/databases/expandedfootballtable" method="POST" style="margin-left:40px;font-size: 20px">
+                    <label>
+                        Add a custom value:
+                    </label>
+
+                    <br>
+
+                    <input name="showVals" type="number" min="0" max="{{ totalTableLength }}"
+                           style="font-size: 20px" required>
+
+                    <button class="btn btn-link" type="submit" style="font-size: 20px">
+                        Go &rarr;
+                    </button>
+
+                    <br>
+
+                    <label style="font-size:15px;color: #9C1A1C">
+                        Numbers only, max value allowed is {{ totalTableLength }}
+                    </label>
+
+                </form>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+        </div>
+    </div>
+
+<br>
+<br>
+<br>
+
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <h1 style="text-align: center;font-family: Verdana, serif">
+                How it works:
+            </h1>
+
+        <br>
+
+            <ol style="font-family: Verdana,serif;font-size: 150%;margin-left: 42%">
+                <li>
+                    I'm an avid soccer fan. So when I wanted to create a simple data project, I visited <a href="kaggle.com/datasets">kaggle.com</a>
+                    and picked a set that appealed to me. The size and content were both just right in my eyes.
+                </li>
+                <li>
+
+                </li>
+            </ol>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+</body>
+</html>

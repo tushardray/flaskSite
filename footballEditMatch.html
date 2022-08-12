@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit a match</title>
+</head>
+<body>
+{% block content %}
+
+<div class="container col-lg-offset-1">
+
+    <div class="row">
+
+        <form action="/databases/footballmatchesupdateredirect" method="POST">
+
+            <label style="font-size:400%;color:#2C3539;margin-top:125px;margin-bottom:30px;margin-left:23px;font-family:verdana">Edit a match</label>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Date</label>
+                <input class="form-control" name="date" value="{{ matchInfo.getDate() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Home Team</label>
+                <input class="form-control" name="homeTeam" value="{{ matchInfo.getHomeTeam() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Away Team</label>
+                <input class="form-control" name="awayTeam" value="{{ matchInfo.getAwayTeam() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Home Score</label>
+                <input class="form-control" name="homeScore" value="{{ matchInfo.getHomeScore() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Away Score</label>
+                <input class="form-control" name="awayScore" value="{{ matchInfo.getAwayScore() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Tournament</label>
+                <input class="form-control" name="tournament" value="{{ matchInfo.getTournament() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">City</label>
+                <input class="form-control" name="city" value="{{ matchInfo.getCity() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Country</label>
+                <input class="form-control" name="country" value="{{ matchInfo.getCountry() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">Neutrality</label>
+                <input class="form-control" name="neutral" value="{{ matchInfo.getNeutral() }}" style="font-size:150%;margin-left:23px">
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <label style="font-size:300%;color:#808000;margin-left:23px">ID</label>
+                <input class="form-control" name="id" value="{{ matchInfo.getID() }}" style="font-size:150%;margin-left:23px" readonly>
+            </div>
+
+            <br>
+            <br>
+
+            <div>
+                <button class="btn btn-warning" type="submit" style="font-size:150%;margin-left:23px">
+                    Submit
+                </button>
+            </div>
+
+
+
+        </form>
+
+        <br>
+
+        <div>
+            <button class="btn btn-primary" type="submit" style="font-size:150%;margin-left:23px">
+                <a href="/databases/footballmatches" style="color:white">Cancel</a>
+            </button>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

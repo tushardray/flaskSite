@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove a match</title>
+</head>
+<body>
+{% block content %}
+
+<div class="container col-lg-offset-1">
+
+    <div class="row">
+
+        <form action="/databases/deletematchredirect" method="post">
+
+        <label style="font-size:400%;color:#2C3539;margin-top:140px">Are you sure you want to remove the game played on {{ record.getDate() }}
+            between {{ record.getHomeTeam() }} and {{ record.getAwayTeam() }} in {{ record.getCity() }}, {{ record.getCountry() }}?</label>
+
+        <input type="hidden" name="id" value="{{ record.getID() }}">
+
+        <br>
+        <br>
+        <br>
+
+        <button style="font-size:200%" class="btn btn-warning" type="submit" name="yes">Yes</button>
+
+        </form>
+
+        <button style="font-size:200%;margin-top:10px" class="btn btn-primary" type="submit" name="no"><a href="/databases/footballmatches" style="color:white">No</a></button>
+
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar Inheritance</title>
+</head>
+<body>
+
+    {% block content %}
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+
+            <ul class="nav navbar-nav" style="font-family:verdana;padding:17px 10px">
+
+                <li>
+                    <a href="/" style="color:#F5FFFA;font-size:24px">    <strong>Home</strong>    </a>
+                </li>
+
+
+                <li>
+                    <a href="/about" style="color:#F5FFFA;font-size:24px">    <strong>About</strong>    </a>
+                </li>
+
+                <li class="dropdown">
+
+                    <button type="button" class="btn btn-link dropdown-toggle" style="margin-top:1px;font-size:24px;color:white" data-toggle="dropdown">
+                        <strong> Forms </strong> <div class="caret"></div>
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header" style="font-size:17px"> <strong> Students </strong></li>
+                        <li>  <a href="/forms/createstudents" style="font-size:15px">  Create a student </a>  </li>
+                        <li>  <a href="/forms/studenttable" style="font-size:15px"> <strong> Student table </strong> </a>  </li>
+                    </ul>
+
+                </li>
+
+            </ul>
+
+            <button class="btn btn-primary navbar-btn navbar-right" style="font-size:20px;margin-top:20px;margin-right:30px">Register</button>
+            <button class="btn btn-default navbar-btn navbar-right" style="font-size:20px;margin-top:20px;margin-right:30px">Log in</button>
+
+        </div>
+    </nav>
+
+    {% endblock %}
+
+</body>
+</html>

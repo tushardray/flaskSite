@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expanded Table</title>
+</head>
+<body>
+{% block content %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-lg-4" style="margin-top: 170px">
+            <p style="margin-bottom: 20px;font-size: 20px">
+                <h1><strong>Showing {{ datalist|length }} rows out of {{ totalTableLength }} total:</strong></h1>
+{#                <strong>Total matches shown: {{ datalist|length }}</strong>#}
+{#                <br>#}
+{#                <strong>Total matches available: {{ totalTableLength }}</strong>#}
+            </p>
+        </div>
+
+        <div class="col-lg-8" style="height: 500px;width: 60%;overflow:auto;float: right;
+        margin-right: 50px;margin-top:170px">
+            <table class="table table-responsive tableScroll"
+                   style="background-color: #F3F3F3">
+                <thead>
+                <tr>
+                    <th>Match ID</th>
+                    <th>Date</th>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Home Score</th>
+                    <th>Away Score</th>
+                    <th>Tournament</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Neutrality (T/F)</th>
+                    <th>Edit match</th>
+                    <th>Delete match</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {%for record in datalist%}
+                    <tr>
+                        <td class="td">{{ record.getID() }}</td>
+                        <td>{{ record.getDate() }}</td>
+                        <td>{{ record.getHomeTeam() }}</td>
+                        <td>{{ record.getAwayTeam() }}</td>
+                        <td>{{ record.getHomeScore() }}</td>
+                        <td>{{ record.getAwayScore() }}</td>
+                        <td>{{ record.getTournament() }}</td>
+                        <td>{{ record.getCity() }}</td>
+                        <td>{{ record.getCountry() }}</td>
+                        <td>{{ record.getNeutral() }}</td>
+
+                        <td><a href="/databases/footballmatchesedit?id={{record.getID()}}&date={{record.getDate()}}&homeTeam={{record.getHomeTeam()}}&
+            awayTeam={{record.getAwayTeam()}}&homeScore={{record.getHomeScore()}}&awayScore={{record.getAwayScore()}}&tournament={{record.getTournament()}}&
+            city={{record.getCity()}}&country={{record.getCountry()}}&neutrality={{record.getNeutral()}}">Edit</a></td>
+
+                        <td><a href="/databases/footballmatchesdelete?id={{record.getID()}}&date={{record.getDate()}}&homeTeam={{record.getHomeTeam()}}&
+            awayTeam={{record.getAwayTeam()}}&homeScore={{record.getHomeScore()}}&awayScore={{record.getAwayScore()}}&tournament={{record.getTournament()}}&
+            city={{record.getCity()}}&country={{record.getCountry()}}&neutrality={{record.getNeutral()}}">Delete</a></td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

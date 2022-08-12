@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table of students</title>
+</head>
+<body>
+{% block content %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+
+            <h1 class="col-lg-offset-5" style="margin-top:140px;font-family:verdana">
+                <strong>Student table</strong>
+            </h1>
+
+        <br>
+        <br>
+            <a href="http://localhost:5000/students/createstudents" class="col-lg-offset-1 col-md-offset-1"
+               style="font-size:200%;font-family:verdana;color:black;margin-top:150px">
+                Create another student
+            </a>
+        <br>
+        <br>
+
+            <table border="3px" class="table col-lg-offset-1 col-md-offset-1" style="width:1100px">
+                <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>Field of study</th>
+                        <th>Student ID</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {%for student in studentlist%}
+                        <tr>
+                            <td>
+                                {{ student.getFirstName() }}
+                            </td>
+                            <td>
+                                {{ student.getLastName() }}
+                            </td>
+                            <td>
+                                {{ student.getGender() }}
+                            </td>
+                            <td>
+                                {{ student.getAddress() }}
+                            </td>
+                            <td>
+                                {{ student.getMajor() }}
+                            </td>
+                            <td>
+                                {{ student.getID() }}
+                            </td>
+                            <td><a href="/students/updatestudent?firstname={{student.getFirstName()}}&lastname={{student.getLastName()}}&gender={{student.getGender()}}&address={{student.getAddress()}}&major={{student.getMajor()}}&id={{student.getID()}}">
+                                Update student
+                            </a></td>
+                            <td><a href="/students/deletestudent?firstname={{student.getFirstName()}}&lastname={{student.getLastName()}}&gender={{student.getGender()}}&address={{student.getAddress()}}&major={{student.getMajor()}}&id={{student.getID()}}">
+                                Delete student
+                            </a></td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+
+        <br>
+        <br>
+
+        <h1 class="col-lg-offset-1" style="font-family: verdana">How to interact with the table: </h1>
+        <br>
+        <ol class="col-lg-offset-1" style="font-size:20px;font-family:Verdana">
+
+            <li>
+                Create a new student using the "Create new student" link just above the table.
+                <br>
+                <img src="C:\Projects\flaskSite\templates\images\studentTableUsageIMG1.png" alt="First step image">
+            </li>
+
+
+            <li style="margin-top:30px">
+                Edit an existing student using the "Update student" link on the right end of the table
+                <br>
+                <img src="C:\Projects\flaskSite\templates\images\studentTableUsageIMG2.jpg" alt="Second step image">
+            </li>
+
+
+            <li style="margin-top:30px">
+                Delete a student by clicking the "Delete student" button on the rightmost side of the table
+                <br>
+                <img src="C:\Projects\flaskSite\templates\images\studentTableUsageIMG3.png" alt="Third step image">
+            </li>
+        </ol>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="col-lg-offset-1">
+        <h1 style="font-family: Verdana,serif">How it works:</h1>
+            <ul style="font-size:20px;font-family: Verdana,serif">
+
+                <li style="margin-top:30px">
+                    After creating a student, a line containing the new information is added to a CSV file
+                    containing all other student information. This information is then added to the table.
+                </li>
+
+                <li style="margin-top:30px">
+                    When deleting a student from the table, the program searches the file for the ID number
+                    matching the one selected by the user. The particular line is removed, resulting in removal
+                    from the table.
+                </li>
+
+                <li style="margin-top:30px">
+                    The updating process is very similar to that used to delete names. The only difference is that
+                    instead of deleting all of the student's information, only the parts that were changed in the
+                    update are removed. They are replaced with the new information and the table updates.
+                </li>
+
+            </ul>
+        </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </div>
+
+    </div>
+
+<br>
+<br>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete a student</title>
+</head>
+<body>
+{% block content %}
+
+<div class="container col-lg-offset-1">
+
+    <div class="row">
+
+        <div>
+
+            <form action="/students/deletestudentredirect" method="POST">
+
+                <label style="font-size:400%;color:#2C3539;margin-top:140px">Are you sure you want to remove the student {{ htmlstudentinfo.getFirstName() }} {{ htmlstudentinfo.getLastName() }}?</label>
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <div class="form-group">
+                    <select class="form-control" style="font-size:150%" name="yesOrNo">
+                        <option value=""></option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+
+
+                <input type="hidden" name="firstname" value="{{ htmlstudentinfo.getFirstName() }}">
+                <input type="hidden" name="lastname" value="{{ htmlstudentinfo.getLastName() }}">
+                <input type="hidden" name="gender" value="{{ htmlstudentinfo.getGender() }}">
+                <input type="hidden" name="address" value="{{ htmlstudentinfo.getAddress() }}">
+                <input type="hidden" name="major" value="{{ htmlstudentinfo.getMajor() }}">
+                <input type="hidden" name="id" value="{{ htmlstudentinfo.getID() }}">
+
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+                <button  style="font-size:200%" class="btn btn-warning" type="submit">
+                    Submit
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+</body>
+</html>
